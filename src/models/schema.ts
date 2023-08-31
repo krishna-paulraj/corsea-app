@@ -34,6 +34,27 @@ const userSchema = new mongoose.Schema({
   verifyUserTokenExpiry: Date,
 });
 
+const courseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  decription: {
+    type: String,
+    required: true,
+  },
+  banner: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+  },
+  published: {
+    type: Boolean,
+  },
+});
+
 const User = mongoose.models.users || mongoose.model("users", userSchema);
 
 export default User;

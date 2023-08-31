@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import { NextResponse } from "next/server";
 export default function page() {
   const router = useRouter();
 
