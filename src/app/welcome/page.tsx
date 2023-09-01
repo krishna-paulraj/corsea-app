@@ -2,11 +2,11 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useState, useEffect } from "react";
+const router = useRouter();
 
 export default function page() {
-  const router = useRouter();
-
   const [data, setData] = useState("Hello");
 
   const logOut = async () => {

@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-export default function page() {
-  const router = useRouter();
 
+export default function page() {
   const [loading, setLoading] = React.useState(false);
   const [showPass, setShowPass] = React.useState(false);
 
@@ -104,13 +102,4 @@ export default function page() {
       </Link>
     </div>
   );
-}
-
-function useState(arg0: {
-  name: string;
-  email: string;
-  username: string;
-  password: string;
-}): [any, any] {
-  throw new Error("Function not implemented.");
 }
