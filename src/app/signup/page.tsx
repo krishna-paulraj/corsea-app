@@ -1,15 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function page() {
-  const [loading, setLoading] = React.useState(false);
-  const [showPass, setShowPass] = React.useState(false);
+export default function SignUpPage() {
+  // Updated component name
+  const [loading, setLoading] = useState(false);
+  const [showPass, setShowPass] = useState(false);
 
-  const onSignUp = async (e: any) => {
+  const onSignUp = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
       setLoading(true);
@@ -19,14 +20,13 @@ export default function page() {
         ? toast.error("User already exists")
         : toast.success("User successfully created");
     } catch (error: any) {
-      console.log(error);
       toast.error(error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     name: "",
     email: "",
     username: "",

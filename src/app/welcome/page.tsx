@@ -4,9 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useState, useEffect } from "react";
-const router = useRouter();
-
-export default function page() {
+export default function Page() {
+  const router = useRouter();
   const [data, setData] = useState("Hello");
 
   const logOut = async () => {
@@ -16,8 +15,12 @@ export default function page() {
 
   useEffect(() => {
     const getData = async () => {
-      const res: any = await axios.get("/api/users/data");
-      setData("Hello " + res.data.data.name);
+      try {
+        const res = await axios.get("/api/users/data");
+        setData("Hello " + res.data.data.name);
+      } catch (error) {
+        console.error(error);
+      }
     };
     getData();
   }, []);

@@ -5,10 +5,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-export default function page() {
-  const router = useRouter();
 
-  const [user, setUser] = React.useState({
+export default function LoginPage() {
+  const router = useRouter();
+  const [user, setUser] = useState({
     username: "",
     password: "",
   });
@@ -23,15 +23,14 @@ export default function page() {
       console.log(res.data.error);
       if (res.data.error) toast.error("Login Failed");
 
-      toast.success("Succesfully Logined");
+      toast.success("Successfully Logged in");
       router.push("/welcome");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <Toaster />
