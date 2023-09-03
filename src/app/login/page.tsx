@@ -54,6 +54,7 @@ export default function LoginPage() {
             setUser({ ...user, password: e.target.value });
           }}
         />
+        <p className="text-blue-500">Forgot Pass ??</p>
         <input
           type="submit"
           onClick={() => {
@@ -67,6 +68,7 @@ export default function LoginPage() {
           value={loading ? "Processing...." : "Login"}
         />
       </form>
+
       <Link href="/signup" className="text-blue-500">
         Not a user Sign up ?
       </Link>
