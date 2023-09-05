@@ -20,7 +20,7 @@ body {
   color: rgb(var(--foreground-rgb));
   height: 100vh;
   background: linear-gradient(
-      to top,
+      to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
