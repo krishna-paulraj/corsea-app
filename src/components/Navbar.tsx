@@ -1,4 +1,8 @@
 "use client";
+import MenuOverlay from "./MenuOverlay";
+import { HiSortAscending } from "react-icons/hi";
+import { useState } from "react";
+import { HiOutlineSortDescending } from "react-icons/hi";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +14,7 @@ export default function Navbar() {
     await axios.get("/api/users/logout");
     router.push("/signup");
   };
+  const [toggle,setToggle]=useState(false)
   return (
     <nav className=" bg-black/80 p-5 sticky top-0">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
@@ -19,28 +24,8 @@ export default function Navbar() {
           Coursea
         </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="block sm:hidden">
-          <button className="text-white hover:text-blue-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Navigation links */}
-        <ul className="hidden sm:flex space-x-4 items-center">
+         {/* Navigation links */}
+         <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
           <li>
             <Link href="/" className="text-white hover:text-blue-200">
               Home
@@ -65,6 +50,13 @@ export default function Navbar() {
             />
           </li>
         </ul>
+
+        {/* Mobile Menu Button */}
+        <div className="hidden max-lg:block">
+          {!toggle ? <HiOutlineSortDescending onClick={()=>setToggle(!toggle)} className=" text-[30px] cursor-pointer"/>
+          :<HiSortAscending onClick={()=>setToggle(!toggle)} className="text-[30px] cursor-pointer" />  }
+          {toggle? <MenuOverlay />:null}
+        </div>
       </div>
     </nav>
   );
