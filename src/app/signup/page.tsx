@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
   // Updated component name
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const router = useRouter();
 
   const onSignUp = async (e: React.FormEvent) => {
     try {
@@ -16,9 +18,11 @@ export default function SignUpPage() {
       setLoading(true);
       const res = await axios.post("/api/users/signup", user);
       console.log(res.data);
-      res.data.error
-        ? toast.error("User already exists")
-        : toast.success("User successfully created");
+      if (res.data.error) {
+        toast.error("User already exists");
+      }
+      toast.success("User successfully created");
+      router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
