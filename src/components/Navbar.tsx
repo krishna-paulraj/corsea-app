@@ -14,7 +14,7 @@ export default function Navbar() {
     await axios.get("/api/users/logout");
     router.push("/signup");
   };
-  const [toggle,setToggle]=useState(false)
+  const [toggle, setToggle] = useState(false);
   return (
     <nav className=" bg-black/80 p-5 sticky top-0">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
@@ -24,15 +24,15 @@ export default function Navbar() {
           Coursea
         </Link>
 
-         {/* Navigation links */}
-         <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
+        {/* Navigation links */}
+        <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
           <li>
-            <Link href="/" className="text-white hover:text-blue-200">
+            <Link href="/welcome" className="text-white hover:text-blue-200">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/" className="text-white hover:text-blue-200">
+            <Link href="/courses" className="text-white hover:text-blue-200">
               Courses
             </Link>
           </li>
@@ -53,9 +53,18 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="hidden max-lg:block">
-          {!toggle ? <HiOutlineSortDescending onClick={()=>setToggle(!toggle)} className=" text-[30px] cursor-pointer"/>
-          :<HiSortAscending onClick={()=>setToggle(!toggle)} className="text-[30px] cursor-pointer" />  }
-          {toggle? <MenuOverlay />:null}
+          {!toggle ? (
+            <HiOutlineSortDescending
+              onClick={() => setToggle(!toggle)}
+              className=" text-[30px] cursor-pointer"
+            />
+          ) : (
+            <HiSortAscending
+              onClick={() => setToggle(!toggle)}
+              className="text-[30px] cursor-pointer"
+            />
+          )}
+          {toggle ? <MenuOverlay /> : null}
         </div>
       </div>
     </nav>
